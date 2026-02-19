@@ -1,0 +1,431 @@
+<div class="phone">
+<div class="island"></div>
+<div class="sbar"><span class="time">9:41</span><span class="ri">📶 WiFi 🔋</span></div>
+<div class="recbar" id="recbar" onclick="toggleRec()"><span class="rdot"></span><span>正在录音</span><span id="recTime">0:00</span><div class="rwave"><span></span><span></span><span></span><span></span><span></span></div></div>
+
+<!-- WELCOME -->
+<div class="sc active" id="welcome">
+<div class="wc">
+<div class="wlogo"><div class="wring"></div></div>
+<div class="wbrand">Monostone</div>
+<div class="wtag">Your second brain starts listening.</div>
+<button class="wbtn" onclick="go('timeline')">Get Started</button>
+<div class="wsub">By continuing, you agree to our Terms & Privacy Policy</div>
+</div>
+</div>
+
+<!-- TIMELINE -->
+<div class="sc" id="timeline">
+<div class="navl">
+<div class="ntr">
+<div class="av" onclick="go('me')">M</div>
+<div class="sp"></div>
+<div class="rs">Ring Connected</div>
+</div>
+<div class="lt">Timeline</div>
+</div>
+<div class="chips">
+<button class="chip active">All</button>
+<button class="chip">Kickstarter Launch</button>
+<button class="chip">Ring Hardware v3</button>
+<button class="chip">融资</button>
+</div>
+<div class="scr" id="tlScr">
+<!-- Morning Digest -->
+<div class="dc" onclick="go('detail')">
+<div class="dh"><span style="font-size:24px">☀️</span><div><div class="dtt">Morning Briefing</div><div class="ddd">今天 · 2月19日 周三</div></div></div>
+<div class="dbb">3个会议 · 5项待办 · Kickstarter 上线倒计时 103 天</div>
+<div class="todos">
+<div class="tdi"><button class="tck" onclick="event.stopPropagation();this.classList.toggle('done')"></button><span>发送硬件 BOM 清单给 Eric 确认</span></div>
+<div class="tdi"><button class="tck" onclick="event.stopPropagation();this.classList.toggle('done')"></button><span>跟进 Lisa 的投资意向书</span></div>
+<div class="tdi"><button class="tck done" onclick="event.stopPropagation();this.classList.toggle('done')"></button><span style="text-decoration:line-through;color:var(--t3)">准备周三团队会议 agenda</span></div>
+</div>
+</div>
+
+<!-- Attention banner -->
+<div class="attn">🔔 需要你处理 · 2 项</div>
+
+<!-- Candidate card -->
+<div class="tc" onclick="go('detail')">
+<div class="ch">
+<div class="ci ci-m">🎙️</div>
+<div class="cb">
+<div class="ct">昨天的产品评审会议</div>
+<div class="cs">讨论了 Kickstarter 页面设计方案和定价策略，Kevin 提出了竞品对比建议</div>
+<div class="cm"><span class="tg tg-b">✨ Distill</span><span>45 分钟</span></div>
+</div>
+</div>
+</div>
+
+<!-- Calendar inline -->
+<div class="cali">
+<div class="calt">10:00 - 11:00</div>
+<div class="caln">📅 与 Eric 1:1 — 硬件进度同步</div>
+<div class="call">Zoom · 每周例会</div>
+</div>
+
+<!-- Agent task -->
+<div class="tc" onclick="go('chat')">
+<div class="ch">
+<div class="ci ci-a">🤖</div>
+<div class="cb">
+<div class="ct">邮件草稿：会议改期通知</div>
+<div class="cs">已为你起草给张伟的会议改期邮件，原定周四的投资人会议改到下周一</div>
+<div class="cm"><span class="tg tg-o">待确认</span><span>刚刚</span></div>
+</div>
+</div>
+</div>
+
+<div class="dsep">昨天 · 2月18日</div>
+
+<!-- Ready cards -->
+<div class="tc" onclick="go('detail')">
+<div class="ch">
+<div class="ci ci-m">🎙️</div>
+<div class="cb">
+<div class="ct">团队周会 — Sprint Review</div>
+<div class="cs">本周完成蓝牙 OTA 升级模块，下周重点是传感器校准。Eric 汇报硬件良率从 82% 提升到 91%</div>
+<div class="cm"><span class="tg tg-g">Ready</span><span>52 分钟 · Kickstarter Launch</span></div>
+</div>
+</div>
+</div>
+
+<div class="tc" onclick="go('detail')">
+<div class="ch">
+<div class="ci ci-t">✅</div>
+<div class="cb">
+<div class="ct">待办：更新投资人 deck 第 7 页</div>
+<div class="cs">加入最新的用户测试数据和 NPS 分数</div>
+<div class="cm"><span class="tg tg-g">已完成</span><span>14:30</span></div>
+</div>
+</div>
+</div>
+
+<!-- Evening Digest -->
+<div class="dc ev">
+<div class="dh"><span style="font-size:24px">🌙</span><div><div class="dtt">Evening Recap</div><div class="ddd">2月18日 周二</div></div></div>
+<div class="dbb">完成 4/6 项待办 · 3 条录音产出 5 份产物 · 记忆新增 3 条</div>
+</div>
+
+<div class="dsep">2月17日 · 周一</div>
+
+<div class="tc" onclick="go('detail')">
+<div class="ch">
+<div class="ci ci-m">🎙️</div>
+<div class="cb">
+<div class="ct">与 Lisa 的融资进展电话</div>
+<div class="cs">Lisa 对六月上线时间线表示认可，建议在 deck 中强化"AI + 可穿戴"叙事</div>
+<div class="cm"><span class="tg tg-g">Ready</span><span>28 分钟 · 融资</span></div>
+</div>
+</div>
+</div>
+
+<div class="tc">
+<div class="ch">
+<div class="ci ci-i">💡</div>
+<div class="cb">
+<div class="ct">竞品分析：Oura Ring Gen 4</div>
+<div class="cs">Oura 侧重健康数据，缺少 AI 交互层。这是我们的差异化机会点</div>
+<div class="cm"><span class="tg tg-p">Insight</span><span>自动生成</span></div>
+</div>
+</div>
+</div>
+
+<div class="tc">
+<div class="ch">
+<div class="ci ci-c">📅</div>
+<div class="cb">
+<div class="ct">已添加：周五 18:00 跟张三吃饭</div>
+<div class="cs">已自动写入日历 📅</div>
+<div class="cm"><span class="tg tg-g">已确认</span><span>语音创建</span></div>
+</div>
+</div>
+</div>
+
+<div style="height:20px"></div>
+</div>
+
+<!-- Record FAB -->
+<div class="rec-fab" id="recFab" onclick="toggleRec()"><div class="rf-inner"></div></div>
+
+<!-- Tab Bar -->
+<div class="tabs" id="mainTabs">
+<button class="ti active" onclick="switchTab('timeline')"><span class="ticon">📋</span><span class="tl">Timeline</span></button>
+<button class="ti" onclick="switchTab('library')"><span class="ticon">📚</span><span class="tl">Library</span></button>
+<button class="ti" onclick="switchTab('memory')"><span class="ticon">🧠</span><span class="tl">Memory</span></button>
+<button class="ti" onclick="switchTab('me')"><span class="ticon">👤</span><span class="tl">Me</span></button>
+</div>
+</div>
+
+<!-- DETAIL -->
+<div class="sc" id="detail">
+<div class="nav">
+<button class="nb" onclick="back()">返回</button>
+<span class="nt">Meeting Note</span>
+<span class="nr">⋯</span>
+</div>
+<div class="scrn">
+<div class="dhead">
+<div class="dtype">🎙️ MEETING NOTE</div>
+<div class="dtitle">团队周会 — Sprint Review</div>
+<div class="dmeta"><span>2月18日 14:00</span><span>52 分钟</span><span>Kickstarter Launch</span></div>
+</div>
+<div class="dcont">
+<div class="dsec">
+<div class="dsect">📝 Summary</div>
+<p>本周 Sprint Review 主要讨论了三个方面：蓝牙 OTA 升级模块完成度、传感器校准计划以及 Kickstarter 页面进展。Eric 汇报硬件良率从 82% 提升到 91%，但仍需在量产前达到 95% 目标。Kevin 完成了 Kickstarter 主视觉设计初稿，团队反馈积极。</p>
+</div>
+
+<div class="dsec">
+<div class="dsect">✅ Action Items</div>
+<div class="ai"><button class="aic" onclick="this.classList.toggle('done')"></button><span class="ait">Eric 完成传感器校准测试报告，截止周五</span><button class="aical" onclick="event.stopPropagation()">📅 Add to Calendar</button></div>
+<div class="ai"><button class="aic" onclick="this.classList.toggle('done')"></button><span class="ait">Kevin 输出 Kickstarter 页面 V2 设计稿，加入 GIF 动效</span><button class="aical" onclick="event.stopPropagation()">📅 Add to Calendar</button></div>
+<div class="ai"><button class="aic done"></button><span class="ait" style="text-decoration:line-through;color:var(--t3)">更新 BOM 成本表并发给供应商确认</span><button class="aical" onclick="event.stopPropagation()">📅 Add to Calendar</button></div>
+<div class="ai"><button class="aic" onclick="this.classList.toggle('done')"></button><span class="ait">预约下周一与模具厂的视频会议</span><button class="aical" onclick="event.stopPropagation()">📅 Add to Calendar</button></div>
+</div>
+
+<div class="dsec">
+<div class="dsect">🎯 Decisions</div>
+<ul>
+<li><span>定价策略确定为 $199 早鸟价 / $249 零售价</span></li>
+<li><span>首批量产目标从 5000 调整为 3000，降低风险</span></li>
+<li><span>Kickstarter 视频拍摄安排在三月第二周</span></li>
+</ul>
+</div>
+
+<div class="dsec">
+<div class="dsect">🔗 Follow-ups</div>
+<ul>
+<li><span>跟进模具厂交期，确认四月底能否出货样品</span></li>
+<li><span>联系 Kickstarter 官方获取 "Projects We Love" 标签申请指南</span></li>
+</ul>
+</div>
+
+<div class="mattr">
+<div class="mattr-t">📎 记忆参与</div>
+<div class="mattr-i">你喜欢 action items 放最前面</div>
+<div class="mattr-i">Eric 是工程负责人</div>
+<div class="mattr-i">周二有固定团队会</div>
+</div>
+
+<div class="learned">
+<div class="learned-t">✨ 从这条内容学到的</div>
+<div class="learned-i">✨ 学到了：硬件良率是你关注的关键指标</div>
+<div class="learned-i">✨ 学到了：Kevin 负责 Kickstarter 视觉设计</div>
+</div>
+</div>
+</div>
+<div class="dbar">
+<button class="dab"><span class="dai">📤</span>投递</button>
+<button class="dab"><span class="dai">📎</span>分享</button>
+<button class="dab"><span class="dai">📋</span>复制</button>
+<button class="dab" onclick="go('chat')"><span class="dai">💬</span>Ask Mono</button>
+<button class="dab"><span class="dai">🗑️</span>删除</button>
+</div>
+</div>
+
+<!-- LIBRARY -->
+<div class="sc" id="library">
+<div class="navl">
+<div class="ntr"><div class="sp"></div></div>
+<div class="lt">Library</div>
+</div>
+<div class="scr">
+<div class="lib-search">🔍 搜索产物、记忆、对话...</div>
+
+<div class="lib-sec">
+<div class="lib-sec-t">📌 Projects</div>
+<div class="lib-row"><span class="lri">📌</span><span class="lrt">Kickstarter Launch</span><span class="lrb">3</span><span class="lra">›</span></div>
+<div class="lib-row"><span class="lri">📌</span><span class="lrt">Ring Hardware v3</span><span class="lrb">1</span><span class="lra">›</span></div>
+<div class="lib-row"><span class="lri">📌</span><span class="lrt">融资</span><span class="lrb">2</span><span class="lra">›</span></div>
+</div>
+
+<div class="lib-sec">
+<div class="lib-sec-t">💡 Notes</div>
+<div class="lib-row"><span class="lri">💡</span><span class="lrt">竞品调研笔记</span><span class="lra">›</span></div>
+<div class="lib-row"><span class="lri">📁</span><span class="lrt">Weekly Review</span><span class="lra">›</span></div>
+<div class="lib-row"><span class="lri">📁</span><span class="lrt">Reading List</span><span class="lra">›</span></div>
+</div>
+
+<div class="lib-sec">
+<div class="lib-sec-t">📦 Archived</div>
+<div class="lib-row"><span class="lri">📦</span><span class="lrt">竞品调研 2024</span><span class="lra">›</span></div>
+</div>
+
+<div class="lib-row" style="margin:0 16px;justify-content:center;color:var(--blue);font-weight:600"><span class="lri">＋</span><span class="lrt" style="color:var(--blue)">Create New</span></div>
+<div style="height:20px"></div>
+</div>
+<div class="tabs" id="libTabs">
+<button class="ti" onclick="switchTab('timeline')"><span class="ticon">📋</span><span class="tl">Timeline</span></button>
+<button class="ti active" onclick="switchTab('library')"><span class="ticon">📚</span><span class="tl">Library</span></button>
+<button class="ti" onclick="switchTab('memory')"><span class="ticon">🧠</span><span class="tl">Memory</span></button>
+<button class="ti" onclick="switchTab('me')"><span class="ticon">👤</span><span class="tl">Me</span></button>
+</div>
+</div>
+
+<!-- MEMORY -->
+<div class="sc" id="memory">
+<div class="navl">
+<div class="ntr"><div class="sp"></div></div>
+<div class="lt">Memory</div>
+</div>
+<div class="scr" id="memScr">
+<div class="msn">
+<div class="msn-t">🧠 Memory Snapshot</div>
+<div class="msn-b">你是 Monostone 的创始人，正冲刺六月 Kickstarter 上线。你偏好简洁直接的沟通风格，喜欢 action items 放最前面。团队核心成员包括 Eric（工程）和 Kevin（设计）。</div>
+<div class="msn-m">18 条记忆 · 最近更新 2 小时前</div>
+</div>
+
+<div class="seg" id="memSeg">
+<button class="segb active" onclick="switchSeg(0)">About Me</button>
+<button class="segb" onclick="switchSeg(1)">Projects</button>
+<button class="segb" onclick="switchSeg(2)">Agent</button>
+</div>
+
+<!-- About Me domain -->
+<div id="memDomain0">
+<div class="mg">
+<div class="mgt">🟡 需确认</div>
+<div class="mi"><span class="mis mis-y"></span><span class="mit">喜欢先看结论再看推导过程</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mcr">这个对吗？ <button class="mcb mc-y" onclick="this.parentElement.innerHTML='✅ 已确认'">确认</button> <button class="mcb mc-n">拒绝</button></div>
+<div class="mi"><span class="mis mis-y"></span><span class="mit">最近在考虑是否做 Android 版</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mcr">这个对吗？ <button class="mcb mc-y" onclick="this.parentElement.innerHTML='✅ 已确认'">确认</button> <button class="mcb mc-n">拒绝</button></div>
+</div>
+<div class="mg">
+<div class="mgt">🟢 已确认</div>
+<div class="mi"><span class="mis mis-g"></span><span class="mit">创业者，Monostone 创始人</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mi"><span class="mis mis-g"></span><span class="mit">偏好简洁直接的沟通风格</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mi"><span class="mis mis-g"></span><span class="mit">不喜欢冗长的邮件，控制在 3 段以内</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mi"><span class="mis mis-g"></span><span class="mit">经常在深夜工作，是夜猫子型</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+</div>
+</div>
+
+<!-- Projects domain -->
+<div id="memDomain1" style="display:none">
+<div class="mg">
+<div class="mgt">▼ Monostone / Kickstarter Launch</div>
+<div class="mi"><span class="mis mis-g"></span><span class="mit">Eric — 工程负责人，关注硬件良率</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mi"><span class="mis mis-g"></span><span class="mit">Kevin — 设计负责人，Kickstarter 视觉</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mi"><span class="mis mis-g"></span><span class="mit">目标六月 Kickstarter 上线</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mi"><span class="mis mis-y"></span><span class="mit">早鸟价 $199，零售价 $249</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mi"><span class="mis mis-g"></span><span class="mit">首批量产 3000 台</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+</div>
+<div class="mg">
+<div class="mgt">▼ 融资</div>
+<div class="mi"><span class="mis mis-g"></span><span class="mit">Lisa — 投资人，看好 AI + 可穿戴方向</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mi"><span class="mis mis-y"></span><span class="mit">在考虑 Pre-A 轮融资时间点</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+</div>
+</div>
+
+<!-- Agent domain -->
+<div id="memDomain2" style="display:none">
+<div class="mg">
+<div class="mgt">🟢 已确认</div>
+<div class="mi"><span class="mis mis-g"></span><span class="mit">邮件偏好：简洁直接，3 段以内</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mi"><span class="mis mis-g"></span><span class="mit">总结格式：action items 放最前面</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mi"><span class="mis mis-g"></span><span class="mit">语言偏好：中文内容，英文术语保留</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+</div>
+<div class="mg">
+<div class="mgt">🟡 推测中</div>
+<div class="mi"><span class="mis mis-y"></span><span class="mit">倾向用要点列表而非长段落</span><span class="mia"><button class="mab">📌</button><button class="mab">✕</button></span></div>
+<div class="mcr">这个对吗？ <button class="mcb mc-y" onclick="this.parentElement.innerHTML='✅ 已确认'">确认</button> <button class="mcb mc-n">拒绝</button></div>
+</div>
+</div>
+
+<div style="height:20px"></div>
+</div>
+<div class="tabs" id="memTabs">
+<button class="ti" onclick="switchTab('timeline')"><span class="ticon">📋</span><span class="tl">Timeline</span></button>
+<button class="ti" onclick="switchTab('library')"><span class="ticon">📚</span><span class="tl">Library</span></button>
+<button class="ti active" onclick="switchTab('memory')"><span class="ticon">🧠</span><span class="tl">Memory</span></button>
+<button class="ti" onclick="switchTab('me')"><span class="ticon">👤</span><span class="tl">Me</span></button>
+</div>
+</div>
+
+<!-- ME -->
+<div class="sc" id="me">
+<div class="navl">
+<div class="ntr"><div class="sp"></div></div>
+<div class="lt">Me</div>
+</div>
+<div class="scr">
+<div class="me-profile">
+<div class="me-av">M</div>
+<div class="me-info">
+<div class="me-name">Mingming</div>
+<div class="me-plan">Pro Plan · Member since Jan 2025</div>
+<div class="me-creds">⚡ 42 Credits remaining</div>
+</div>
+</div>
+
+<div class="me-cta" onclick="go('chat')">
+<span class="mci">💬</span>
+<div class="mct">
+<div class="mctit">Ask Mono</div>
+<div class="mcsu">Ask anything about your recordings & projects</div>
+</div>
+<span class="mcar">›</span>
+</div>
+
+<div class="me-sec">
+<div class="me-sec-t">Settings</div>
+<div class="me-rows">
+<div class="mr"><span class="mri">💍</span><span class="mrt">戒指管理</span><span class="mrb" style="color:var(--green)">已连接</span><span class="mra">›</span></div>
+<div class="mr"><span class="mri">📅</span><span class="mrt">Integrations</span><span class="mrb">3 connected</span><span class="mra">›</span></div>
+<div class="mr"><span class="mri">🔒</span><span class="mrt">隐私 & 数据</span><span class="mra">›</span></div>
+<div class="mr"><span class="mri">⚙️</span><span class="mrt">高级</span><span class="mra">›</span></div>
+</div>
+</div>
+
+<div class="me-logout">退出登录</div>
+<div style="height:20px"></div>
+</div>
+<div class="tabs" id="meTabs">
+<button class="ti" onclick="switchTab('timeline')"><span class="ticon">📋</span><span class="tl">Timeline</span></button>
+<button class="ti" onclick="switchTab('library')"><span class="ticon">📚</span><span class="tl">Library</span></button>
+<button class="ti" onclick="switchTab('memory')"><span class="ticon">🧠</span><span class="tl">Memory</span></button>
+<button class="ti active" onclick="switchTab('me')"><span class="ticon">👤</span><span class="tl">Me</span></button>
+</div>
+</div>
+
+<!-- CHAT -->
+<div class="sc" id="chat">
+<div class="nav">
+<button class="nb" onclick="back()">返回</button>
+<span class="nt">Mono</span>
+<span class="nr">＋</span>
+</div>
+<div class="chat-area" id="chatArea">
+<div class="chat-msg agent">
+<div class="chat-bubble">👋 Hey Mingming! 今天有 3 个会议和 5 项待办。需要我帮你准备什么吗？</div>
+<div class="chat-time">9:00</div>
+</div>
+
+<div class="chat-msg user">
+<div class="chat-bubble">帮我看看昨天跟 Lisa 的电话都聊了什么</div>
+<div class="chat-time">9:05</div>
+</div>
+
+<div class="chat-msg agent">
+<div class="chat-bubble">好的，找到了昨天下午 3:30 与 Lisa 的通话记录（28 分钟）。主要内容：</div>
+<div class="chat-card">
+<div class="cct">📞 与 Lisa 的融资进展电话</div>
+<div class="ccbo">1. Lisa 对六月上线时间线表示认可<br>2. 建议在 deck 中强化"AI + 可穿戴"叙事<br>3. 提到另一家基金 Matrix Partners 可能有兴趣<br>4. 下一步：安排 Lisa 来公司看产品 demo</div>
+<div class="cca"><button class="ccbt ccbt-p" onclick="go('detail')">查看详情</button><button class="ccbt ccbt-s">投递到 Notion</button></div>
+</div>
+<div class="chat-time">9:05</div>
+</div>
+
+<div class="chat-msg user">
+<div class="chat-bubble">帮我写一封 follow-up 邮件给 Lisa，感谢她的时间并确认下周 demo 的安排</div>
+<div class="chat-time">9:08</div>
+</div>
+
+<div class="chat-msg agent">
+<div class="chat-bubble">已经根据你的偏好（简洁直接）起草好了：</div>
+<div class="chat-card">
+<div class="cct">✉️ 邮件草稿</div>
+<div class="ccbo">Hi Lisa,<br><br>感谢昨天的时间。关于 demo，下周三或周四下午方便吗？我们可以现场展示最新的原型机和 AI 交互流程。<br><br>Best,<br>Mingming</div>
+<div class="cca"><button class="ccbt ccbt-p">✉️ 发送</button><button class="ccbt ccbt-s">编辑</button></div>
+</div>
+<div
