@@ -172,7 +172,7 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 .mr .mrb{font-size:13px;color:var(--t2)}
 .me-rows{border-radius:12px;overflow:hidden;margin-bottom:16px}
 .me-logout{margin:16px;padding:14px;background:var(--bg1);border-radius:12px;text-align:center;color:var(--red);font-size:16px;cursor:pointer}
-.chat-area{flex:1;overflow-y:auto;padding:12px 16px 90px;display:flex;flex-direction:column;gap:12px}
+.chat-area{flex:1;overflow-y:auto;padding:12px 16px 12px;display:flex;flex-direction:column;gap:12px}
 .chat-area::-webkit-scrollbar{display:none}
 .chat-msg{max-width:82%;display:flex;flex-direction:column;gap:4px;animation:msgIn .3s ease-out}
 @keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -346,6 +346,39 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 .int-ok{background:rgba(52,199,89,.12);color:var(--green)}
 .int-cfg{background:rgba(255,149,0,.12);color:var(--orange)}
 
+
+/* Tool call card */
+.tool-card{background:var(--bg1);border:1px solid rgba(0,122,255,.15);border-radius:14px;padding:12px;margin-top:4px;max-width:100%}
+.tool-card-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:12px;font-weight:600;color:var(--blue)}
+.tool-card-header .tool-icon{width:22px;height:22px;border-radius:6px;background:var(--bdim);display:flex;align-items:center;justify-content:center;font-size:12px}
+.tool-card-body{font-size:13px;color:var(--t2);line-height:1.5}
+.tool-card-body .tool-kv{display:flex;gap:8px;padding:3px 0}
+.tool-card-body .tool-kv .tk{color:var(--t3);font-weight:600;min-width:60px;font-size:12px}
+.tool-card-body .tool-kv .tv{flex:1;color:var(--t1)}
+.tool-card-status{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--green);margin-top:8px}
+/* Agent input bar */
+.agent-input-bar{position:absolute;bottom:83px;left:0;right:0;padding:8px 12px;background:rgba(28,28,30,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:.5px solid var(--sep);display:flex;align-items:center;gap:6px;z-index:50}
+.agent-extras{display:flex;gap:2px;flex-shrink:0}
+.agent-extras button{width:30px;height:30px;border-radius:50%;background:none;border:none;color:var(--t2);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .15s}
+.agent-extras button:active{color:var(--blue)}
+.agent-input{flex:1;padding:10px 14px;background:var(--bg2);border:none;border-radius:20px;color:var(--t1);font-size:15px;font-family:inherit;outline:none;min-width:0}
+.agent-input::placeholder{color:var(--t3)}
+.agent-send{width:32px;height:32px;border-radius:50%;background:var(--blue);border:none;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+/* Agent nav */
+.agent-nav{padding-top:59px;height:103px;display:flex;align-items:center;padding-left:16px;padding-right:16px;flex-shrink:0;z-index:50;gap:8px}
+.scope-pill{display:flex;align-items:center;gap:6px;padding:6px 14px;background:var(--bg2);border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;border:none;color:var(--t1);font-family:inherit;transition:background .15s;flex-shrink:0}
+.scope-pill:active{background:var(--bg3)}
+.scope-pill .scope-arrow{font-size:10px;color:var(--t3);margin-left:2px}
+.agent-nav-spacer{flex:1}
+.agent-settings-btn{width:32px;height:32px;border-radius:50%;background:var(--bg2);border:none;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;flex-shrink:0}
+.scope-dropdown{position:absolute;top:103px;left:16px;right:16px;background:var(--bg1);border:1px solid var(--sep);border-radius:14px;padding:8px;z-index:200;display:none;animation:fadeIn .2s}
+.scope-dropdown.show{display:block}
+.scope-opt{padding:12px 14px;border-radius:10px;font-size:15px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:10px;transition:background .15s}
+.scope-opt:active,.scope-opt.active{background:var(--bg2)}
+.scope-opt .scope-check{color:var(--blue);font-size:16px;margin-left:auto}
+.chat-bubble strong{font-weight:700}
+.chat-bubble em{font-style:italic;color:var(--t2)}
+.chat-bubble code{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px;font-size:13px;font-family:'SF Mono',Menlo,monospace}
 </style>
 </head>
 <body>
@@ -448,7 +481,7 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <div class="sc" id="timeline">
 <div class="navl">
 <div class="ntr">
-<div class="av" onclick="go('me')">M</div>
+<div class="av" onclick="go('profile')">M</div>
 <div class="sp"></div>
 <div class="rs">Ring Connected</div>
 </div>
@@ -467,7 +500,7 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <div class="empty-title">Your timeline is waiting.</div>
 <div class="empty-sub">Record something with your ring or ask Mono to help you get started.</div>
 <button class="empty-btn" onclick="toggleRec()">🎙️ Record Now</button>
-<button class="empty-btn" style="background:var(--bg2);color:var(--t1)" onclick="go('chat')">💬 Ask Mono</button>
+<button class="empty-btn" style="background:var(--bg2);color:var(--t1)" onclick="switchTab('agent')">💬 Ask Mono</button>
 </div>
 <!-- Morning Digest -->
 <div class="dc" onclick="go('brief')">
@@ -591,7 +624,7 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <button class="ti active" onclick="switchTab('timeline')"><span class="ticon">📋</span><span class="tl">Timeline</span></button>
 <button class="ti" onclick="switchTab('library')"><span class="ticon">📚</span><span class="tl">Library</span></button>
 <button class="ti" onclick="switchTab('memory')"><span class="ticon">🧠</span><span class="tl">Memory</span></button>
-<button class="ti" onclick="switchTab('me')"><span class="ticon">👤</span><span class="tl">Me</span></button>
+<button class="ti" onclick="switchTab('agent')"><span class="ticon">💬</span><span class="tl">Agent</span></button>
 </div>
 </div>
 
@@ -734,7 +767,7 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <button class="dab" onclick="openBSheet()"><span class="dai">📤</span>投递</button>
 <button class="dab"><span class="dai">📎</span>分享</button>
 <button class="dab"><span class="dai">📋</span>复制</button>
-<button class="dab" onclick="go('chat')"><span class="dai">💬</span>Ask Mono</button>
+<button class="dab" onclick="switchTab('agent')"><span class="dai">💬</span>Ask Mono</button>
 <button class="dab"><span class="dai">🗑️</span>删除</button>
 </div>
 </div>
@@ -780,7 +813,7 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <button class="ti" onclick="switchTab('timeline')"><span class="ticon">📋</span><span class="tl">Timeline</span></button>
 <button class="ti active" onclick="switchTab('library')"><span class="ticon">📚</span><span class="tl">Library</span></button>
 <button class="ti" onclick="switchTab('memory')"><span class="ticon">🧠</span><span class="tl">Memory</span></button>
-<button class="ti" onclick="switchTab('me')"><span class="ticon">👤</span><span class="tl">Me</span></button>
+<button class="ti" onclick="switchTab('agent')"><span class="ticon">💬</span><span class="tl">Agent</span></button>
 </div>
 </div>
 
@@ -795,7 +828,7 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <div class="empty-icon">🧠</div>
 <div class="empty-title">I don't know you yet.</div>
 <div class="empty-sub">After your first recording, I'll start building your memory here.</div>
-<button class="empty-btn" onclick="go('chat')">Tell me about yourself →</button>
+<button class="empty-btn" onclick="switchTab('agent')">Tell me about yourself →</button>
 </div>
 <div class="msn">
 <div class="msn-t">🧠 Memory Snapshot</div>
@@ -865,17 +898,110 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <button class="ti" onclick="switchTab('timeline')"><span class="ticon">📋</span><span class="tl">Timeline</span></button>
 <button class="ti" onclick="switchTab('library')"><span class="ticon">📚</span><span class="tl">Library</span></button>
 <button class="ti active" onclick="switchTab('memory')"><span class="ticon">🧠</span><span class="tl">Memory</span></button>
-<button class="ti" onclick="switchTab('me')"><span class="ticon">👤</span><span class="tl">Me</span></button>
+<button class="ti" onclick="switchTab('agent')"><span class="ticon">💬</span><span class="tl">Agent</span></button>
 </div>
 </div>
 
-<!-- ME -->
-<div class="sc" id="me">
-<div class="navl">
-<div class="ntr"><div class="sp"></div></div>
-<div class="lt">Me</div>
+<!-- AGENT -->
+<div class="sc" id="agent">
+<div class="agent-nav">
+<button class="scope-pill" id="scopePill" onclick="toggleScopeDropdown()">🌐 全局 <span class="scope-arrow">▼</span></button>
+<div class="agent-nav-spacer"></div>
+<button class="agent-settings-btn" onclick="go('modelSettings')">⚙️</button>
 </div>
-<div class="scr">
+<div class="scope-dropdown" id="scopeDropdown">
+<div class="scope-opt active" onclick="selectScope('global','🌐 全局')">🌐 全局<span class="scope-check">✓</span></div>
+<div class="scope-opt" onclick="selectScope('ks','📌 Kickstarter Launch')">📌 Kickstarter Launch<span class="scope-check" style="display:none">✓</span></div>
+<div class="scope-opt" onclick="selectScope('hw','🔧 Ring Hardware v3')">🔧 Ring Hardware v3<span class="scope-check" style="display:none">✓</span></div>
+<div class="scope-opt" onclick="selectScope('fund','💰 融资')">💰 融资<span class="scope-check" style="display:none">✓</span></div>
+</div>
+<div class="chat-area" id="agentChatArea">
+
+<div class="chat-msg agent">
+<div class="chat-bubble">👋 Hey Mingming! 今天有 3 个会议和 5 项待办。需要我帮你准备什么吗？</div>
+<div class="chat-time">9:00</div>
+</div>
+
+<div class="chat-msg user">
+<div class="chat-bubble">帮我看看昨天跟 Lisa 的电话都聊了什么</div>
+<div class="chat-time">9:05</div>
+</div>
+
+<div class="chat-msg agent">
+<div class="chat-bubble">好的，让我搜索一下你的录音记录...</div>
+<div class="tool-card">
+<div class="tool-card-header"><span class="tool-icon">🔍</span> memory_search</div>
+<div class="tool-card-body">
+<div class="tool-kv"><span class="tk">query</span><span class="tv">"Lisa 电话"</span></div>
+<div class="tool-kv"><span class="tk">range</span><span class="tv">yesterday</span></div>
+<div class="tool-kv"><span class="tk">found</span><span class="tv">1 recording, 28 min</span></div>
+</div>
+<div class="tool-card-status">✅ 找到 1 条匹配录音</div>
+</div>
+<div class="chat-time">9:05</div>
+</div>
+
+<div class="chat-msg agent">
+<div class="chat-bubble">找到了昨天下午 3:30 与 Lisa 的通话记录（28 分钟）。主要内容：</div>
+<div class="chat-card">
+<div class="cct">📞 与 Lisa 的融资进展电话</div>
+<div class="ccbo">1. Lisa 对六月上线时间线表示认可<br>2. 建议在 deck 中强化"AI + 可穿戴"叙事<br>3. 提到另一家基金 Matrix Partners 可能有兴趣<br>4. 下一步：安排 Lisa 来公司看产品 demo</div>
+<div class="cca"><button class="ccbt ccbt-p" onclick="go('detail')">查看详情</button><button class="ccbt ccbt-s">投递到 Notion</button></div>
+</div>
+<div class="chat-time">9:05</div>
+</div>
+
+<div class="chat-msg user">
+<div class="chat-bubble">帮我写一封 follow-up 邮件给 Lisa</div>
+<div class="chat-time">9:08</div>
+</div>
+
+<div class="chat-msg agent">
+<div class="chat-bubble">好的，根据你的偏好起草邮件...</div>
+<div class="tool-card">
+<div class="tool-card-header"><span class="tool-icon">🧠</span> recall_preferences</div>
+<div class="tool-card-body">
+<div class="tool-kv"><span class="tk">style</span><span class="tv">简洁直接，3 段以内</span></div>
+<div class="tool-kv"><span class="tk">lang</span><span class="tv">中文内容，英文术语保留</span></div>
+</div>
+<div class="tool-card-status">✅ 已加载偏好</div>
+</div>
+<div class="chat-card">
+<div class="cct">✉️ 邮件草稿</div>
+<div class="ccbo">Hi Lisa,<br><br>感谢昨天的时间。关于 demo，下周三或周四下午方便吗？我们可以现场展示最新的原型机和 AI 交互流程。<br><br>Best,<br>Mingming</div>
+<div class="cca"><button class="ccbt ccbt-p">✉️ 发送</button><button class="ccbt ccbt-s">编辑</button></div>
+</div>
+<div class="chat-time">9:08</div>
+<div style="font-size:12px;color:var(--t3);margin-top:4px">✨ 用了你的偏好「简洁直接，3 段以内」</div>
+</div>
+
+</div>
+
+<div class="agent-input-bar">
+<div class="agent-extras">
+<button onclick="agentAttach()">📎</button>
+<button onclick="agentVoice()">🎙️</button>
+</div>
+<input class="agent-input" placeholder="Ask anything..." id="agentInput" onkeypress="if(event.key==='Enter')sendAgentMsg()">
+<button class="agent-send" onclick="sendAgentMsg()">↑</button>
+</div>
+
+<div class="tabs" id="agentTabs">
+<button class="ti" onclick="switchTab('timeline')"><span class="ticon">📋</span><span class="tl">Timeline</span></button>
+<button class="ti" onclick="switchTab('library')"><span class="ticon">📚</span><span class="tl">Library</span></button>
+<button class="ti" onclick="switchTab('memory')"><span class="ticon">🧠</span><span class="tl">Memory</span></button>
+<button class="ti active" onclick="switchTab('agent')"><span class="ticon">💬</span><span class="tl">Agent</span></button>
+</div>
+</div>
+
+<!-- PROFILE (push page, not a tab) -->
+<div class="sc" id="profile">
+<div class="nav">
+<button class="nb" onclick="back()">返回</button>
+<span class="nt">Profile</span>
+<span class="nr"></span>
+</div>
+<div class="scrn">
 <div class="me-profile">
 <div class="me-av">M</div>
 <div class="me-info">
@@ -883,15 +1009,6 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <div class="me-plan">Pro Plan · Member since Jan 2025</div>
 <div class="me-creds">⚡ 42 Credits remaining</div>
 </div>
-</div>
-
-<div class="me-cta" onclick="go('chat')">
-<span class="mci">💬</span>
-<div class="mct">
-<div class="mctit">Ask Mono</div>
-<div class="mcsu">Ask anything about your recordings & projects</div>
-</div>
-<span class="mcar">›</span>
 </div>
 
 <div class="me-sec">
@@ -908,91 +1025,44 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <div class="me-logout">退出登录</div>
 <div style="height:20px"></div>
 </div>
-<div class="tabs" id="meTabs">
-<button class="ti" onclick="switchTab('timeline')"><span class="ticon">📋</span><span class="tl">Timeline</span></button>
-<button class="ti" onclick="switchTab('library')"><span class="ticon">📚</span><span class="tl">Library</span></button>
-<button class="ti" onclick="switchTab('memory')"><span class="ticon">🧠</span><span class="tl">Memory</span></button>
-<button class="ti active" onclick="switchTab('me')"><span class="ticon">👤</span><span class="tl">Me</span></button>
-</div>
 </div>
 
-<!-- CHAT -->
-<div class="sc" id="chat">
+<!-- MODEL SETTINGS -->
+<div class="sc" id="modelSettings">
 <div class="nav">
 <button class="nb" onclick="back()">返回</button>
-<span class="nt">Mono</span>
-<span class="nr">＋</span>
+<span class="nt">Model & Plan</span>
+<span class="nr"></span>
 </div>
-<div class="chat-area" id="chatArea">
-<div class="empty" id="chatEmpty" style="display:none">
-<div class="empty-icon">💬</div>
-<div class="empty-title">Hey, I'm Mono.</div>
-<div class="empty-sub">Ask me to draft an email, summarize your day, or just brainstorm.</div>
-<div style="text-align:left;width:100%;max-width:280px">
-<div style="padding:8px 12px;background:var(--bg2);border-radius:10px;margin-bottom:6px;font-size:14px;color:var(--t2);cursor:pointer" onclick="document.getElementById('chatInput').value='Summarize today\'s meetings';sendMsg()">Try: "Summarize today's meetings"</div>
-<div style="padding:8px 12px;background:var(--bg2);border-radius:10px;margin-bottom:6px;font-size:14px;color:var(--t2);cursor:pointer" onclick="document.getElementById('chatInput').value='Draft a follow-up email';sendMsg()">Try: "Draft a follow-up email"</div>
-<div style="padding:8px 12px;background:var(--bg2);border-radius:10px;font-size:14px;color:var(--t2);cursor:pointer" onclick="document.getElementById('chatInput').value='What did I decide about pricing?';sendMsg()">Try: "What did I decide about X?"</div>
+<div class="scrn">
+<div class="set-info" style="margin:0 20px 16px">
+<span class="set-info-icon">🤖</span>
+<div class="set-info-text">
+<div class="set-info-title">AI Model</div>
+<div class="set-info-sub">管理你的 AI 模型和订阅方案</div>
 </div>
 </div>
-<div class="chat-msg agent">
-<div class="chat-bubble">👋 Hey Mingming! 今天有 3 个会议和 5 项待办。需要我帮你准备什么吗？</div>
-<div class="chat-time">9:00</div>
+<div class="set-group-title">当前模型</div>
+<div class="set-group">
+<div class="set-row"><span class="set-row-icon">🧠</span><span class="set-row-label">Model</span><span class="set-row-val">GPT-4o</span></div>
+<div class="set-row"><span class="set-row-icon">⚡</span><span class="set-row-label">Speed</span><span class="set-row-val" style="color:var(--green)">Fast</span></div>
+<div class="set-row"><span class="set-row-icon">📊</span><span class="set-row-label">Context</span><span class="set-row-val">128K tokens</span></div>
 </div>
-
-<div class="chat-msg user">
-<div class="chat-bubble">帮我看看昨天跟 Lisa 的电话都聊了什么</div>
-<div class="chat-time">9:05</div>
+<div class="set-group-title">订阅方案</div>
+<div class="set-group">
+<div class="set-row"><span class="set-row-icon">⭐</span><span class="set-row-label">Plan</span><span class="set-row-val" style="color:var(--blue)">Pro</span></div>
+<div class="set-row"><span class="set-row-icon">⚡</span><span class="set-row-label">Credits</span><span class="set-row-val">42 remaining</span></div>
+<div class="set-row"><span class="set-row-icon">📅</span><span class="set-row-label">续费日期</span><span class="set-row-val">2025-03-15</span></div>
 </div>
-
-<div class="chat-msg agent">
-<div class="chat-bubble">好的，找到了昨天下午 3:30 与 Lisa 的通话记录（28 分钟）。主要内容：</div>
-<div class="chat-card">
-<div class="cct">📞 与 Lisa 的融资进展电话</div>
-<div class="ccbo">1. Lisa 对六月上线时间线表示认可<br>2. 建议在 deck 中强化"AI + 可穿戴"叙事<br>3. 提到另一家基金 Matrix Partners 可能有兴趣<br>4. 下一步：安排 Lisa 来公司看产品 demo</div>
-<div class="cca"><button class="ccbt ccbt-p" onclick="go('detail')">查看详情</button><button class="ccbt ccbt-s">投递到 Notion</button></div>
+<div class="set-group-title">BYOK (Bring Your Own Key)</div>
+<div class="set-group">
+<div class="set-row"><span class="set-row-icon">🔑</span><span class="set-row-label">OpenAI API Key</span><span class="set-row-val" style="color:var(--t3)">未配置</span><span class="set-row-arr">›</span></div>
+<div class="set-row"><span class="set-row-icon">🔑</span><span class="set-row-label">Anthropic API Key</span><span class="set-row-val" style="color:var(--t3)">未配置</span><span class="set-row-arr">›</span></div>
 </div>
-<div class="chat-time">9:05</div>
-</div>
-
-<div class="chat-msg user">
-<div class="chat-bubble">帮我写一封 follow-up 邮件给 Lisa，感谢她的时间并确认下周 demo 的安排</div>
-<div class="chat-time">9:08</div>
-</div>
-
-<div class="chat-msg agent">
-<div class="chat-bubble">已经根据你的偏好（简洁直接）起草好了：</div>
-<div class="chat-card">
-<div class="cct">✉️ 邮件草稿</div>
-<div class="ccbo">Hi Lisa,<br><br>感谢昨天的时间。关于 demo，下周三或周四下午方便吗？我们可以现场展示最新的原型机和 AI 交互流程。<br><br>Best,<br>Mingming</div>
-<div class="cca"><button class="ccbt ccbt-p">✉️ 发送</button><button class="ccbt ccbt-s">编辑</button></div>
-</div>
-<div class="chat-time">9:08</div>
-<div style="font-size:12px;color:var(--t3);margin-top:4px">✨ 用了你的偏好「简洁直接，3 段以内」</div>
-</div>
-
-<div class="chat-msg user">
-<div class="chat-bubble">不错，但加一句提到 Matrix Partners 的事</div>
-<div class="chat-time">9:10</div>
-</div>
-
-<div class="chat-msg agent">
-<div class="chat-bubble">好的，已更新邮件草稿，加入了 Matrix Partners 的内容。需要我直接发送吗？</div>
-<div class="chat-time">9:10</div>
+<div style="padding:12px 20px;font-size:12px;color:var(--t3);text-align:center">使用自己的 API Key 可以不受 Credit 限制</div>
+<button class="set-btn set-btn-blue" style="margin-top:8px">✨ 升级到 Unlimited</button>
 </div>
 </div>
-
-<div class="chat-input-bar">
-<input class="chat-input" placeholder="Ask Mono anything..." id="chatInput" onkeypress="if(event.key==='Enter')sendMsg()">
-<button class="chat-send" onclick="sendMsg()">↑</button>
-</div>
-</div>
-
-<!-- DELIVERY BOTTOM SHEET -->
-<div class="bsheet-overlay" id="deliverSheet" onclick="closeBSheet(event)">
-<div class="bsheet">
-<div class="bsheet-handle"></div>
-<div class="bsheet-title">投递到...</div>
-<div class="bsheet-item" onclick="deliverTo('Notion')"><span class="bsheet-item-icon">📝</span><span class="bsheet-item-name">Notion</span><span class="bsheet-item-status">✅</span></div>
 <div class="bsheet-item" onclick="deliverTo('Apple Calendar')"><span class="bsheet-item-icon">📅</span><span class="bsheet-item-name">Apple Calendar</span><span class="bsheet-item-status">✅</span></div>
 <div class="bsheet-item" onclick="deliverTo('Obsidian')"><span class="bsheet-item-icon">💎</span><span class="bsheet-item-name">Obsidian</span><span class="bsheet-item-status">⚙️</span></div>
 <div class="bsheet-item" onclick="deliverTo('Email')"><span class="bsheet-item-icon">✉️</span><span class="bsheet-item-name">Email</span><span class="bsheet-item-status">✅</span></div>
@@ -1109,7 +1179,7 @@ Mingming</textarea>
 <button class="dab" onclick="confirmTask()" id="agentConfirmBtn"><span class="dai">✅</span>确认执行</button>
 <button class="dab"><span class="dai">✏️</span>编辑</button>
 <button class="dab"><span class="dai">❌</span>取消</button>
-<button class="dab" onclick="go('chat')"><span class="dai">💬</span>Ask Mono</button>
+<button class="dab" onclick="switchTab('agent')"><span class="dai">💬</span>Ask Mono</button>
 </div>
 </div>
 
@@ -1193,7 +1263,7 @@ Mingming</textarea>
 <div class="empty-icon">🔍</div>
 <div class="empty-title">No results found</div>
 <div class="empty-sub">Try a different keyword, or ask Mono to help you find what you're looking for.</div>
-<button class="empty-btn" onclick="go('chat')">💬 Ask Mono about this</button>
+<button class="empty-btn" onclick="switchTab('agent')">💬 Ask Mono about this</button>
 </div>
 </div>
 <div id="searchResults" style="display:none;padding:0 16px">
@@ -1212,7 +1282,7 @@ Mingming</textarea>
 <div class="search-result-title">目标六月 Kickstarter 上线</div>
 <div class="search-result-snippet">Project Memory · Kickstarter Launch</div>
 </div>
-<div class="search-result" onclick="go('chat')">
+<div class="search-result" onclick="switchTab('agent')">
 <div class="search-result-type">🤖 对话</div>
 <div class="search-result-title">与 Mono 讨论定价策略</div>
 <div class="search-result-snippet">建议早鸟价 $199，零售价 $249</div>
@@ -1364,6 +1434,8 @@ let recInterval = null;
 
 // Navigation
 function go(screen) {
+  // Redirect chat -> agent tab
+  if (screen === 'chat') { switchTab('agent'); return; }
   previousScreen = currentScreen;
   document.querySelectorAll('.sc').forEach(s => s.classList.remove('active'));
   const el = document.getElementById(screen);
@@ -1373,19 +1445,25 @@ function go(screen) {
     setTimeout(() => el.classList.remove('slide-in'), 300);
   }
   currentScreen = screen;
+  // Close scope dropdown if open
+  const dd = document.getElementById('scopeDropdown');
+  if (dd) dd.classList.remove('show');
 }
 
 function back() {
-  // Settings sub-pages go back to me
-  const mePages = ['ringMgmt','integrations','account','privacy','advanced'];
+  const profilePages = ['ringMgmt','integrations','account','privacy','advanced'];
   let target;
-  if (mePages.includes(currentScreen)) {
-    target = 'me';
+  if (profilePages.includes(currentScreen)) {
+    target = 'profile';
+  } else if (currentScreen === 'profile') {
+    target = 'timeline';
+  } else if (currentScreen === 'modelSettings') {
+    target = 'agent';
   } else if (currentScreen === 'searchPage') {
     target = 'library';
   } else if (currentScreen === 'projectDetail') {
     target = 'library';
-  } else if (['timeline','library','memory','me'].includes(previousScreen)) {
+  } else if (['timeline','library','memory','agent'].includes(previousScreen)) {
     target = previousScreen;
   } else {
     target = 'timeline';
@@ -1402,6 +1480,16 @@ function switchTab(tab) {
   if (el) el.classList.add('active');
   currentScreen = tab;
   previousScreen = tab;
+  // Close scope dropdown
+  const dd = document.getElementById('scopeDropdown');
+  if (dd) dd.classList.remove('show');
+  // Scroll agent chat to bottom on tab switch
+  if (tab === 'agent') {
+    setTimeout(() => {
+      const area = document.getElementById('agentChatArea');
+      if (area) area.scrollTop = area.scrollHeight;
+    }, 50);
+  }
 }
 
 // Memory segments
@@ -1437,14 +1525,14 @@ function toggleRec() {
   }
 }
 
-// Chat
-function sendMsg() {
-  const input = document.getElementById('chatInput');
+// Agent Chat
+function sendAgentMsg() {
+  const input = document.getElementById('agentInput');
   const text = input.value.trim();
   if (!text) return;
   input.value = '';
 
-  const area = document.getElementById('chatArea');
+  const area = document.getElementById('agentChatArea');
 
   // User message
   const userMsg = document.createElement('div');
@@ -1459,22 +1547,97 @@ function sendMsg() {
   area.appendChild(typing);
   area.scrollTop = area.scrollHeight;
 
-  // Agent response
-  setTimeout(() => {
-    typing.remove();
-    const agentMsg = document.createElement('div');
-    agentMsg.className = 'chat-msg agent';
-    const responses = [
-      '好的，让我查一下你的录音记录... 找到了相关内容。',
-      '已经帮你处理了。还需要其他帮助吗？',
-      '根据你之前的录音，我找到了一些相关信息。需要我详细展开吗？',
-      '明白了。我会记住这个偏好，下次自动应用。'
-    ];
-    const resp = responses[Math.floor(Math.random() * responses.length)];
-    agentMsg.innerHTML = '<div class="chat-bubble">' + resp + '</div><div class="chat-time">' + now() + '</div>';
-    area.appendChild(agentMsg);
-    area.scrollTop = area.scrollHeight;
-  }, 1500);
+  // Simulate tool call then response
+  const hasToolCall = Math.random() > 0.5;
+  const toolDelay = hasToolCall ? 1000 : 0;
+
+  if (hasToolCall) {
+    setTimeout(() => {
+      typing.remove();
+      // Show tool call
+      const toolMsg = document.createElement('div');
+      toolMsg.className = 'chat-msg agent';
+      const tools = [
+        {icon:'🔍',name:'memory_search',query:escHtml(text),result:'3 条相关记录'},
+        {icon:'📅',name:'calendar_check',query:'today',result:'3 个会议'},
+        {icon:'📊',name:'project_lookup',query:'Kickstarter',result:'5 条更新'},
+      ];
+      const tool = tools[Math.floor(Math.random() * tools.length)];
+      toolMsg.innerHTML = '<div class="tool-card"><div class="tool-card-header"><span class="tool-icon">' + tool.icon + '</span> ' + tool.name + '</div><div class="tool-card-body"><div class="tool-kv"><span class="tk">query</span><span class="tv">"' + tool.query + '"</span></div></div><div class="tool-card-status">✅ ' + tool.result + '</div></div>';
+      area.appendChild(toolMsg);
+      area.scrollTop = area.scrollHeight;
+
+      // Then typing again
+      const typing2 = document.createElement('div');
+      typing2.className = 'chat-msg agent';
+      typing2.innerHTML = '<div class="chat-bubble"><div class="typing"><span></span><span></span><span></span></div></div>';
+      area.appendChild(typing2);
+      area.scrollTop = area.scrollHeight;
+
+      setTimeout(() => {
+        typing2.remove();
+        appendAgentReply(area);
+      }, 1200);
+    }, toolDelay);
+  } else {
+    setTimeout(() => {
+      typing.remove();
+      appendAgentReply(area);
+    }, 1500);
+  }
+}
+
+function appendAgentReply(area) {
+  const agentMsg = document.createElement('div');
+  agentMsg.className = 'chat-msg agent';
+  const responses = [
+    '好的，让我查一下你的录音记录... 找到了相关内容。需要我详细展开吗？',
+    '已经帮你处理了。还需要其他帮助吗？',
+    '根据你之前的录音，我找到了一些相关信息。这里是关键要点：<br><br><strong>1.</strong> 上周讨论了定价策略<br><strong>2.</strong> Eric 提交了最新良率报告<br><strong>3.</strong> 下一步需要确认量产时间线',
+    '明白了。我会记住这个偏好，下次自动应用。✨',
+    '已根据你的偏好整理好了。要我帮你投递到 Notion 吗？'
+  ];
+  const resp = responses[Math.floor(Math.random() * responses.length)];
+  agentMsg.innerHTML = '<div class="chat-bubble">' + resp + '</div><div class="chat-time">' + now() + '</div>';
+  area.appendChild(agentMsg);
+  area.scrollTop = area.scrollHeight;
+}
+
+// Legacy sendMsg redirects to agent
+function sendMsg() { sendAgentMsg(); }
+
+// Scope dropdown
+function toggleScopeDropdown() {
+  const dd = document.getElementById('scopeDropdown');
+  dd.classList.toggle('show');
+}
+function selectScope(id, label) {
+  document.getElementById('scopePill').innerHTML = label + ' <span class="scope-arrow">▼</span>';
+  document.getElementById('scopeDropdown').classList.remove('show');
+  // Update active state
+  document.querySelectorAll('.scope-opt').forEach(opt => {
+    opt.classList.remove('active');
+    opt.querySelector('.scope-check').style.display = 'none';
+  });
+  event.currentTarget.classList.add('active');
+  event.currentTarget.querySelector('.scope-check').style.display = '';
+}
+
+// Agent extras
+function agentAttach() {
+  // Simulate attachment UI
+  const t = document.createElement('div');
+  t.style.cssText = 'position:absolute;top:110px;left:50%;transform:translateX(-50%);background:var(--bg2);color:var(--t1);padding:8px 20px;border-radius:10px;font-size:14px;font-weight:600;z-index:300;animation:fadeIn .3s';
+  t.textContent = '📎 选择附件...';
+  document.querySelector('.phone').appendChild(t);
+  setTimeout(() => t.remove(), 1500);
+}
+function agentVoice() {
+  const t = document.createElement('div');
+  t.style.cssText = 'position:absolute;top:110px;left:50%;transform:translateX(-50%);background:var(--bg2);color:var(--t1);padding:8px 20px;border-radius:10px;font-size:14px;font-weight:600;z-index:300;animation:fadeIn .3s';
+  t.textContent = '🎙️ 正在录音...';
+  document.querySelector('.phone').appendChild(t);
+  setTimeout(() => t.remove(), 1500);
 }
 
 function escHtml(s) {
@@ -1614,7 +1777,7 @@ let emptyOn = false;
 function toggleEmptyStates() {
   emptyOn = !emptyOn;
   document.getElementById('emptyToggleVal').textContent = emptyOn ? 'On' : 'Off';
-  const ids = ['tlEmpty','libEmpty','memEmpty','chatEmpty'];
+  const ids = ['tlEmpty','libEmpty','memEmpty'];
   ids.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = emptyOn ? 'flex' : 'none';
