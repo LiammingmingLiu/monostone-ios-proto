@@ -172,7 +172,7 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 .mr .mrb{font-size:13px;color:var(--t2)}
 .me-rows{border-radius:12px;overflow:hidden;margin-bottom:16px}
 .me-logout{margin:16px;padding:14px;background:var(--bg1);border-radius:12px;text-align:center;color:var(--red);font-size:16px;cursor:pointer}
-.chat-area{flex:1;overflow-y:auto;padding:12px 16px 12px;display:flex;flex-direction:column;gap:12px}
+.chat-area{flex:1;overflow-y:auto;padding:12px 16px 120px;display:flex;flex-direction:column;gap:12px}
 .chat-area::-webkit-scrollbar{display:none}
 .chat-msg{max-width:82%;display:flex;flex-direction:column;gap:4px;animation:msgIn .3s ease-out}
 @keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
@@ -208,7 +208,7 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 .lib-row .lrt{flex:1;font-size:15px;font-weight:500}
 .lib-row .lrb{font-size:12px;color:var(--t3);background:var(--bg2);padding:2px 8px;border-radius:10px;font-weight:600}
 .lib-row .lra{color:var(--t3);font-size:14px}
-.rec-fab{position:absolute;bottom:100px;right:20px;width:56px;height:56px;border-radius:28px;background:linear-gradient(135deg,var(--red),#cc2b22);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:70;box-shadow:0 4px 20px rgba(255,59,48,.4);transition:transform .15s}
+.rec-fab{position:absolute;bottom:150px;right:20px;width:56px;height:56px;border-radius:28px;background:linear-gradient(135deg,var(--red),#cc2b22);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:70;box-shadow:0 4px 20px rgba(255,59,48,.4);transition:transform .15s}
 .rec-fab:active{transform:scale(.9)}
 .rec-fab .rf-inner{width:22px;height:22px;border-radius:50%;background:#fff;transition:all .2s}
 .rec-fab.recording .rf-inner{width:16px;height:16px;border-radius:4px}
@@ -346,6 +346,28 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 .int-ok{background:rgba(52,199,89,.12);color:var(--green)}
 .int-cfg{background:rgba(255,149,0,.12);color:var(--orange)}
 
+/* BYOK CTA Banner in Agent tab */
+.byok-banner{position:absolute;bottom:130px;left:12px;right:12px;padding:12px 16px;background:linear-gradient(135deg,rgba(175,82,222,.18),rgba(0,122,255,.14));border:1px solid rgba(175,82,222,.25);border-radius:14px;display:flex;align-items:center;gap:12px;z-index:55;cursor:pointer;transition:transform .1s;animation:byokPulse 3s ease-in-out infinite}
+.byok-banner:active{transform:scale(.98)}
+.byok-banner .byok-icon{font-size:24px;flex-shrink:0}
+.byok-banner .byok-text{flex:1}
+.byok-banner .byok-title{font-size:14px;font-weight:700;color:var(--t1)}
+.byok-banner .byok-sub{font-size:12px;color:var(--t2);margin-top:2px}
+.byok-banner .byok-arr{font-size:16px;color:var(--t3);flex-shrink:0}
+.byok-dismiss{background:none;border:none;color:var(--t3);font-size:16px;cursor:pointer;flex-shrink:0;padding:4px}
+@keyframes byokPulse{0%,100%{box-shadow:0 0 0 0 rgba(175,82,222,.15)}50%{box-shadow:0 0 0 4px rgba(175,82,222,0)}}
+
+/* iOS Push Notification */
+.ios-notification{position:absolute;top:-120px;left:10px;right:10px;background:rgba(44,44,46,.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:16px;padding:14px 16px;z-index:300;display:flex;gap:12px;align-items:flex-start;box-shadow:0 8px 30px rgba(0,0,0,.5);transition:transform .5s cubic-bezier(.2,.9,.3,1);transform:translateY(0)}
+.ios-notification.show{transform:translateY(calc(120px + 14px))}
+.ios-notification .notif-icon{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.ios-notification .notif-content{flex:1;min-width:0}
+.ios-notification .notif-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.ios-notification .notif-app{font-size:12px;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.3px}
+.ios-notification .notif-time{font-size:11px;color:var(--t3)}
+.ios-notification .notif-title{font-size:14px;font-weight:700;color:var(--t1);margin-bottom:2px}
+.ios-notification .notif-body{font-size:13px;color:var(--t2);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
 
 /* Tool call card */
 .tool-card{background:var(--bg1);border:1px solid rgba(0,122,255,.15);border-radius:14px;padding:12px;margin-top:4px;max-width:100%}
@@ -386,6 +408,16 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <div class="island"></div>
 <div class="sbar"><span class="time">9:41</span><span class="ri">📶 WiFi 🔋</span></div>
 <div class="recbar" id="recbar" onclick="toggleRec()"><span class="rdot"></span><span>正在录音</span><span id="recTime">0:00</span><div class="rwave"><span></span><span></span><span></span><span></span><span></span></div></div>
+
+<!-- iOS Push Notification -->
+<div class="ios-notification" id="iosNotification" onclick="dismissNotification();go('detail')">
+<div class="notif-icon">🪨</div>
+<div class="notif-content">
+<div class="notif-header"><span class="notif-app">Monostone</span><span class="notif-time">now</span></div>
+<div class="notif-title">📋 Meeting note is ready</div>
+<div class="notif-body">Your meeting with Kevin just ended. 3 action items extracted. Tap to review.</div>
+</div>
+</div>
 
 <!-- WELCOME -->
 <div class="sc active" id="welcome">
@@ -806,8 +838,8 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <div class="lib-row"><span class="lri">📦</span><span class="lrt">竞品调研 2024</span><span class="lra">›</span></div>
 </div>
 
-<div class="lib-row" style="margin:0 16px;justify-content:center;color:var(--blue);font-weight:600"><span class="lri">＋</span><span class="lrt" style="color:var(--blue)">Create New</span></div>
-<div style="height:20px"></div>
+<div class="lib-row" style="margin:0 16px 20px;justify-content:center;color:var(--blue);font-weight:600"><span class="lri">＋</span><span class="lrt" style="color:var(--blue)">Create New</span></div>
+<div style="height:30px"></div>
 </div>
 <div class="tabs" id="libTabs">
 <button class="ti" onclick="switchTab('timeline')"><span class="ticon">📋</span><span class="tl">Timeline</span></button>
@@ -975,6 +1007,17 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <div style="font-size:12px;color:var(--t3);margin-top:4px">✨ 用了你的偏好「简洁直接，3 段以内」</div>
 </div>
 
+</div>
+
+<!-- BYOK CTA Banner -->
+<div class="byok-banner" id="byokBanner" onclick="go('modelSettings')">
+<span class="byok-icon">🔑</span>
+<div class="byok-text">
+<div class="byok-title">Unlock Unlimited — Add your API Key</div>
+<div class="byok-sub">Use your own OpenAI/Anthropic key · No credit limits</div>
+</div>
+<span class="byok-arr">›</span>
+<button class="byok-dismiss" onclick="event.stopPropagation();document.getElementById('byokBanner').style.display='none'">✕</button>
 </div>
 
 <div class="agent-input-bar">
@@ -1448,6 +1491,10 @@ function go(screen) {
   // Close scope dropdown if open
   const dd = document.getElementById('scopeDropdown');
   if (dd) dd.classList.remove('show');
+  // Trigger push notification on first Timeline visit
+  if (screen === 'timeline') {
+    showPushNotification();
+  }
 }
 
 function back() {
@@ -1489,6 +1536,10 @@ function switchTab(tab) {
       const area = document.getElementById('agentChatArea');
       if (area) area.scrollTop = area.scrollHeight;
     }, 50);
+  }
+  // Trigger push notification on first Timeline visit
+  if (tab === 'timeline') {
+    showPushNotification();
   }
 }
 
@@ -1770,6 +1821,23 @@ function toggleRingDisconnect() {
 }
 function reconnectRing() {
   document.getElementById('ringbar').classList.remove('show');
+}
+
+// --- iOS PUSH NOTIFICATION ---
+let notifShown = false;
+function showPushNotification() {
+  if (notifShown) return;
+  notifShown = true;
+  const notif = document.getElementById('iosNotification');
+  setTimeout(() => {
+    notif.classList.add('show');
+    // Auto-dismiss after 5 seconds
+    setTimeout(() => { dismissNotification(); }, 5000);
+  }, 1500);
+}
+function dismissNotification() {
+  const notif = document.getElementById('iosNotification');
+  notif.classList.remove('show');
 }
 
 // --- EMPTY STATES TOGGLE (Debug) ---
