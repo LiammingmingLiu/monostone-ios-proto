@@ -220,6 +220,80 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 .slide-in{animation:slideIn .3s ease-out}
 @keyframes slideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
 
+/* Ring Battery in Status Bar */
+.ring-battery{display:flex;align-items:center;gap:3px;font-size:12px;font-weight:600}
+.ring-battery .rb-icon{font-size:11px}
+.ring-battery .rb-pct{color:var(--t1)}
+.ring-battery.low .rb-pct{color:var(--red)}
+.ring-battery.low .rb-warn{color:var(--red);font-size:10px}
+
+/* AI Processing Progress */
+.ai-progress{display:flex;align-items:center;gap:0;margin:10px 0 6px;padding:0 4px}
+.ai-progress .step{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;position:relative}
+.ai-progress .step .dot{width:12px;height:12px;border-radius:50%;background:var(--bg3);position:relative;z-index:2}
+.ai-progress .step .dot.done{background:var(--green)}
+.ai-progress .step .dot.active{background:var(--blue);box-shadow:0 0 8px rgba(0,122,255,.5)}
+.ai-progress .step .dot.fail{background:var(--red)}
+.ai-progress .step .lbl{font-size:9px;color:var(--t3);white-space:nowrap}
+.ai-progress .step .lbl.done{color:var(--green)}
+.ai-progress .step .lbl.active{color:var(--blue);font-weight:600}
+.ai-progress .step .lbl.fail{color:var(--red)}
+.ai-progress .line{flex:1;height:2px;background:var(--bg3);margin:0 -4px;position:relative;top:-10px;z-index:1}
+.ai-progress .line.done{background:var(--green)}
+.ai-progress .line.active{background:linear-gradient(90deg,var(--green),var(--blue))}
+.ai-proc-timer{font-size:12px;color:var(--t2);text-align:center;margin-bottom:6px}
+.ai-proc-fail{font-size:13px;color:var(--red);text-align:center;margin:4px 0}
+.ai-proc-retry{background:none;border:1px solid var(--red);color:var(--red);padding:4px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit;margin-top:4px}
+
+/* Intent Preview Card */
+.intent-card{margin:8px 0;background:var(--bg1);border-radius:16px;padding:14px 16px;border:1px solid var(--sep)}
+.intent-card .ic-title{font-size:15px;font-weight:700;margin-bottom:10px}
+.intent-card .ic-countdown{position:absolute;top:14px;right:16px;font-size:11px;color:var(--orange);font-weight:600}
+.intent-card .ic-step{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;margin-bottom:6px;font-size:14px}
+.intent-card .ic-step.reversible{background:var(--bg2)}
+.intent-card .ic-step.irreversible{background:rgba(255,59,48,.1);border:1px solid rgba(255,59,48,.15)}
+.intent-card .ic-step .ic-icon{font-size:16px;flex-shrink:0}
+.intent-card .ic-step .ic-label{flex:1}
+.intent-card .ic-step .ic-tag{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:600}
+.intent-card .ic-step .ic-tag.rev{background:rgba(52,199,89,.15);color:var(--green)}
+.intent-card .ic-step .ic-tag.irrev{background:rgba(255,59,48,.15);color:var(--red)}
+.intent-card .ic-actions{display:flex;gap:8px;margin-top:10px}
+.intent-card .ic-actions button{flex:1;padding:10px 0;border-radius:10px;border:none;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.intent-card .ic-actions .ic-approve{background:var(--blue);color:#fff}
+.intent-card .ic-actions .ic-edit{background:var(--bg2);color:var(--t1)}
+.intent-card .ic-actions .ic-cancel{background:var(--bg2);color:var(--red)}
+
+/* Daily Agent Summary Card */
+.daily-summary{margin:8px 0;background:linear-gradient(135deg,rgba(0,122,255,.15),rgba(88,86,214,.1));border-radius:16px;padding:16px;border:1px solid rgba(0,122,255,.12)}
+.daily-summary .ds-title{font-size:16px;font-weight:700;margin-bottom:10px}
+.daily-summary .ds-item{font-size:14px;color:var(--t2);line-height:1.8}
+.daily-summary .ds-link{font-size:13px;color:var(--blue);margin-top:8px;cursor:pointer}
+
+/* Action Item Confidence */
+.ai-conf{display:inline-flex;align-items:center;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600;margin-left:auto;flex-shrink:0}
+.ai-conf.high{background:rgba(52,199,89,.12);color:var(--green)}
+.ai-conf.low{background:rgba(255,149,0,.12);color:var(--orange)}
+.ai-confirm-btn{background:none;border:1px solid var(--orange);color:var(--orange);padding:1px 8px;border-radius:4px;font-size:10px;cursor:pointer;margin-left:4px;font-family:inherit}
+.ai.needs-confirm{background:rgba(255,149,0,.05);border-radius:8px;padding:6px 8px;margin:-2px -8px}
+
+/* Privacy Promise Screen */
+.privacy-promise{display:flex;flex-direction:column;gap:12px;width:100%;max-width:320px}
+.pp-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;background:var(--bg1);border-radius:12px}
+.pp-item .pp-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.pp-item .pp-text{font-size:14px;color:var(--t2);line-height:1.5}
+.rec-mode-group{display:flex;flex-direction:column;gap:8px;width:100%;max-width:320px;margin-top:8px}
+.rec-mode{display:flex;align-items:center;gap:10px;padding:12px;background:var(--bg1);border-radius:12px;cursor:pointer;border:2px solid transparent;transition:border-color .2s}
+.rec-mode.selected{border-color:var(--blue)}
+.rec-mode input[type="radio"]{display:none}
+.rec-mode .rm-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--t3);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rec-mode.selected .rm-radio{border-color:var(--blue);background:var(--blue)}
+.rec-mode.selected .rm-radio::after{content:'';width:8px;height:8px;border-radius:50%;background:#fff}
+.rec-mode .rm-icon{font-size:18px;flex-shrink:0}
+.rec-mode .rm-body{flex:1}
+.rec-mode .rm-name{font-size:14px;font-weight:600}
+.rec-mode .rm-desc{font-size:12px;color:var(--t3)}
+.rec-mode .rm-rec{font-size:10px;color:var(--blue);font-weight:600;margin-top:2px}
+
 /* Onboarding */
 .ob-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 30px;text-align:center}
 .ob-icon{font-size:64px;margin-bottom:24px}
@@ -453,8 +527,28 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <div class="ob-perm"><span class="ob-perm-icon">📡</span><div class="ob-perm-txt"><div class="ob-perm-name">Bluetooth</div><div class="ob-perm-desc">To connect your ring</div></div></div>
 <div class="ob-perm"><span class="ob-perm-icon">🔔</span><div class="ob-perm-txt"><div class="ob-perm-name">Notifications</div><div class="ob-perm-desc">To keep you in the loop</div></div></div>
 <div class="ob-perm"><span class="ob-perm-icon">📅</span><div class="ob-perm-txt"><div class="ob-perm-name">Calendar</div><div class="ob-perm-desc">To see your schedule and add events</div></div></div>
-<button class="ob-btn" onclick="go('ob3')" style="margin-top:32px">Allow All</button>
-<div class="ob-dots"><span class="ob-dot"></span><span class="ob-dot active"></span><span class="ob-dot"></span><span class="ob-dot"></span><span class="ob-dot"></span></div>
+<button class="ob-btn" onclick="go('ob2b')" style="margin-top:32px">Allow All</button>
+<div class="ob-dots"><span class="ob-dot"></span><span class="ob-dot active"></span><span class="ob-dot"></span><span class="ob-dot"></span><span class="ob-dot"></span><span class="ob-dot"></span></div>
+</div>
+</div>
+
+<!-- ONBOARDING STEP 2B: Privacy Promise -->
+<div class="sc" id="ob2b">
+<div class="ob-wrap" style="justify-content:flex-start;padding-top:80px">
+<div class="ob-title">你的数据，你做主</div>
+<div class="privacy-promise">
+<div class="pp-item"><span class="pp-icon">🔒</span><div class="pp-text">录音不永久留存，处理完即清除</div></div>
+<div class="pp-item"><span class="pp-icon">🚫</span><div class="pp-text">不用于 AI 训练</div></div>
+<div class="pp-item"><span class="pp-icon">🗑️</span><div class="pp-text">随时一键删除所有数据</div></div>
+</div>
+<div style="font-size:14px;font-weight:600;color:var(--t2);margin-top:16px;margin-bottom:4px">选择录音模式</div>
+<div class="rec-mode-group" id="recModeGroup">
+<div class="rec-mode selected" onclick="selectRecMode(this)"><div class="rm-radio"></div><span class="rm-icon">👆</span><div class="rm-body"><div class="rm-name">仅手动触发</div><div class="rm-desc">隐私最强，每次录音需手动启动</div><div class="rm-rec">推荐</div></div></div>
+<div class="rec-mode" onclick="selectRecMode(this)"><div class="rm-radio"></div><span class="rm-icon">🎙️</span><div class="rm-body"><div class="rm-name">会议模式</div><div class="rm-desc">检测到会议场景时自动录音</div></div></div>
+<div class="rec-mode" onclick="selectRecMode(this)"><div class="rm-radio"></div><span class="rm-icon">🌐</span><div class="rm-body"><div class="rm-name">全天被动</div><div class="rm-desc">持续采集，最强上下文</div></div></div>
+</div>
+<button class="ob-btn" onclick="go('ob3')" style="margin-top:20px">我已了解，继续</button>
+<div class="ob-dots"><span class="ob-dot"></span><span class="ob-dot"></span><span class="ob-dot active"></span><span class="ob-dot"></span><span class="ob-dot"></span><span class="ob-dot"></span></div>
 </div>
 </div>
 
@@ -515,6 +609,7 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <div class="ntr">
 <div class="av" onclick="go('profile')">M</div>
 <div class="sp"></div>
+<div class="ring-battery" id="ringBattery" onclick="toggleRingBatteryDemo()"><span class="rb-icon">💍</span><span class="rb-pct">82%</span></div>
 <div class="rs">Ring Connected</div>
 </div>
 <div class="lt">Timeline</div>
@@ -565,6 +660,41 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <div class="calt">10:00 - 11:00</div>
 <div class="caln">📅 与 Eric 1:1 — 硬件进度同步</div>
 <div class="call">Zoom · 每周例会</div>
+</div>
+
+<!-- Processing card with AI progress -->
+<div class="tc" id="processingCard" style="border:1px solid rgba(0,122,255,.12)">
+<div class="ch">
+<div class="ci ci-m">🎙️</div>
+<div class="cb">
+<div class="ct">与张总的电话会议</div>
+<div class="cs">正在处理中...</div>
+</div>
+</div>
+<div class="ai-progress" id="aiProgress">
+<div class="step"><div class="dot done"></div><div class="lbl done">录音 ✅</div></div>
+<div class="line done"></div>
+<div class="step"><div class="dot done"></div><div class="lbl done">上传 ✅</div></div>
+<div class="line active"></div>
+<div class="step"><div class="dot active"></div><div class="lbl active">转录中 🔄</div></div>
+<div class="line"></div>
+<div class="step"><div class="dot"></div><div class="lbl">分析 🧠</div></div>
+<div class="line"></div>
+<div class="step"><div class="dot"></div><div class="lbl">完成 ✅</div></div>
+</div>
+<div class="ai-proc-timer" id="aiProcTimer">正在处理…已 <span id="aiProcSec">23</span> 秒</div>
+</div>
+
+<!-- Failed processing card -->
+<div class="tc" style="border:1px solid rgba(255,59,48,.15)">
+<div class="ch">
+<div class="ci ci-m" style="background:rgba(255,59,48,.15)">🎙️</div>
+<div class="cb">
+<div class="ct">午餐快速录音</div>
+<div class="ai-proc-fail">⚠️ 转录失败（音频质量低）</div>
+<div style="text-align:center"><button class="ai-proc-retry" onclick="this.textContent='重试中...';setTimeout(()=>this.textContent='重试',1500)">重试</button></div>
+</div>
+</div>
 </div>
 
 <!-- Agent task -->
@@ -758,10 +888,10 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 
 <div class="dsec">
 <div class="dsect">✅ Action Items</div>
-<div class="ai"><button class="aic" onclick="this.classList.toggle('done')"></button><span class="ait">Eric 完成传感器校准测试报告，截止周五</span><button class="aical" onclick="event.stopPropagation()">📅 Add to Calendar</button></div>
-<div class="ai"><button class="aic" onclick="this.classList.toggle('done')"></button><span class="ait">Kevin 输出 Kickstarter 页面 V2 设计稿，加入 GIF 动效</span><button class="aical" onclick="event.stopPropagation()">📅 Add to Calendar</button></div>
-<div class="ai"><button class="aic done"></button><span class="ait" style="text-decoration:line-through;color:var(--t3)">更新 BOM 成本表并发给供应商确认</span><button class="aical" onclick="event.stopPropagation()">📅 Add to Calendar</button></div>
-<div class="ai"><button class="aic" onclick="this.classList.toggle('done')"></button><span class="ait">预约下周一与模具厂的视频会议</span><button class="aical" onclick="event.stopPropagation()">📅 Add to Calendar</button></div>
+<div class="ai"><button class="aic" onclick="this.classList.toggle('done')"></button><span class="ait">Eric 完成传感器校准测试报告，截止周五</span><span class="ai-conf high">✅ 高置信</span><button class="aical" onclick="event.stopPropagation()">📅</button></div>
+<div class="ai"><button class="aic" onclick="this.classList.toggle('done')"></button><span class="ait">Kevin 输出 Kickstarter 页面 V2 设计稿，加入 GIF 动效</span><span class="ai-conf high">✅ 高置信</span><button class="aical" onclick="event.stopPropagation()">📅</button></div>
+<div class="ai"><button class="aic done"></button><span class="ait" style="text-decoration:line-through;color:var(--t3)">更新 BOM 成本表并发给供应商确认</span><span class="ai-conf high">✅ 高置信</span><button class="aical" onclick="event.stopPropagation()">📅</button></div>
+<div class="ai needs-confirm"><button class="aic" onclick="this.classList.toggle('done')"></button><span class="ait">预约下周一与模具厂的视频会议</span><span class="ai-conf low">❓ 待确认</span><button class="ai-confirm-btn" onclick="event.stopPropagation();this.textContent='已确认';this.style.color='var(--green)';this.style.borderColor='var(--green)'">确认</button></div>
 </div>
 
 <div class="dsec">
@@ -1007,6 +1137,34 @@ body{background:#0a0a0a;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Dis
 <div style="font-size:12px;color:var(--t3);margin-top:4px">✨ 用了你的偏好「简洁直接，3 段以内」</div>
 </div>
 
+</div>
+
+<!-- Intent Preview Trigger Button -->
+<div style="text-align:center;padding:6px 0">
+<button onclick="showIntentPreview()" style="background:var(--bg2);border:1px solid var(--sep);color:var(--blue);padding:8px 16px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">🤖 查看 Agent 执行计划</button>
+</div>
+
+<!-- Intent Preview Card (hidden by default) -->
+<div class="intent-card" id="intentPreviewCard" style="display:none;position:relative;margin:8px 16px">
+<span class="ic-countdown" id="intentCountdown">60s 后自动取消</span>
+<div class="ic-title">Agent 准备执行以下操作</div>
+<div class="ic-step reversible"><span class="ic-icon">✅</span><span class="ic-label">整理今日会议记录</span><span class="ic-tag rev">可逆</span></div>
+<div class="ic-step reversible"><span class="ic-icon">📅</span><span class="ic-label">创建"项目复盘"日历事件 2月28日 10:00</span><span class="ic-tag rev">可逆</span></div>
+<div class="ic-step irreversible"><span class="ic-icon">🔴</span><span class="ic-label">删除 3 条旧录音</span><span class="ic-tag irrev">不可逆</span></div>
+<div class="ic-actions">
+<button class="ic-approve" onclick="approveIntent()">全部批准</button>
+<button class="ic-edit" onclick="hideIntentPreview()">编辑</button>
+<button class="ic-cancel" onclick="hideIntentPreview()">取消</button>
+</div>
+</div>
+
+<!-- Daily Agent Summary Card -->
+<div class="daily-summary" style="margin:8px 16px">
+<div class="ds-title">📊 今日 Agent 摘要</div>
+<div class="ds-item">✅ 已完成 5 项：整理了 3 份会议记录、创建了 2 个日历事项</div>
+<div class="ds-item">⚠️ 1 项需要你确认：发送邮件给张总</div>
+<div class="ds-item">📈 今日录音 4 次，总计 47 分钟</div>
+<div class="ds-link" onclick="go('detail')">查看详情 →</div>
 </div>
 
 <!-- BYOK CTA Banner -->
@@ -1838,6 +1996,71 @@ function showPushNotification() {
 function dismissNotification() {
   const notif = document.getElementById('iosNotification');
   notif.classList.remove('show');
+}
+
+// --- PRIVACY PROMISE: Rec Mode Selection ---
+function selectRecMode(el) {
+  document.querySelectorAll('.rec-mode').forEach(m => m.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+// --- RING BATTERY DEMO ---
+function toggleRingBatteryDemo() {
+  const rb = document.getElementById('ringBattery');
+  const pct = rb.querySelector('.rb-pct');
+  if (rb.classList.contains('low')) {
+    rb.classList.remove('low');
+    pct.textContent = '82%';
+    if (rb.querySelector('.rb-warn')) rb.querySelector('.rb-warn').remove();
+  } else {
+    rb.classList.add('low');
+    pct.textContent = '15%';
+    if (!rb.querySelector('.rb-warn')) {
+      const w = document.createElement('span');
+      w.className = 'rb-warn';
+      w.textContent = '⚠';
+      rb.appendChild(w);
+    }
+  }
+}
+
+// --- AI PROCESSING TIMER ---
+let aiProcSeconds = 23;
+setInterval(() => {
+  aiProcSeconds++;
+  const el = document.getElementById('aiProcSec');
+  if (el) el.textContent = aiProcSeconds;
+}, 1000);
+
+// --- INTENT PREVIEW ---
+let intentTimer = null;
+let intentSec = 60;
+function showIntentPreview() {
+  const card = document.getElementById('intentPreviewCard');
+  card.style.display = 'block';
+  intentSec = 60;
+  updateIntentCountdown();
+  if (intentTimer) clearInterval(intentTimer);
+  intentTimer = setInterval(() => {
+    intentSec--;
+    updateIntentCountdown();
+    if (intentSec <= 0) { hideIntentPreview(); }
+  }, 1000);
+  card.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function hideIntentPreview() {
+  document.getElementById('intentPreviewCard').style.display = 'none';
+  if (intentTimer) clearInterval(intentTimer);
+}
+function updateIntentCountdown() {
+  const el = document.getElementById('intentCountdown');
+  if (el) el.textContent = intentSec + 's 后自动取消';
+}
+function approveIntent() {
+  const card = document.getElementById('intentPreviewCard');
+  card.innerHTML = '<div style="text-align:center;padding:16px;font-size:15px;font-weight:600;color:var(--green)">✅ 已批准所有操作</div>';
+  if (intentTimer) clearInterval(intentTimer);
+  setTimeout(() => { card.style.display = 'none'; }, 2000);
 }
 
 // --- EMPTY STATES TOGGLE (Debug) ---
